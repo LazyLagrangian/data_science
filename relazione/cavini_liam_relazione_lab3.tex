@@ -3,6 +3,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{multirow}
+\usepackage{float}
 
 % Language setting
 % Replace 'english' with e.g. 'spanish' to change the document language
@@ -11,7 +12,7 @@
 
 % Set page size and margins
 % Replace 'letterpaper' with 'a4paper' for UK/EU standard size
-\usepackage[letterpaper,top=2cm,bottom=2cm,left=1cm,right=1cm,marginparwidth=1.75cm]{geometry}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
 \usepackage{amsmath}
@@ -62,6 +63,9 @@
 { Liam Cavini} \hfill {\bf 3° Foglio, Regressione Lineare e Modelli}\\
 {\ Semestre Invernale 2024/2025} \hfill 30/10/2024
 
+\subsection*{Risorse}
+Il codice utilizzato, insieme al file .tex di questo documento, possono essere trovati nella seguente repository github: \url{https://github.com/LazyLagrangian/data_science}.
+
 \subsection*{Esercizio 1 - Regressione con funzioni di base Gaussiane}
 L'esercizio ha lo scopo di compiere un fit di un polinomio tramite regressione lineare, utilizzando un modello della forma:
 \[
@@ -78,21 +82,24 @@ Si è scelto come polinomio:
 \[ 
 p(x) = -0.1x^5-0.4x^4+1.2x^3+x^2-2.3x
 \]
-%todo: dire che si è splittato in test e train
-Sono stati generati $100$ datapoints, di cui $60$ sono stati usati nel dataset di train e $40$ in quello di test. I dati sono stati ottenuti campionando $p(x)$ nell'intervallo $[-1.5, 3.0]$, ed è stato aggiunto un termine casuale per simulare del rumore.
 
-Si sono compiute regressioni per vari valori di $\alpha$ e $n$, con lo scopo di valutare quali parametri risultino ottimali, mentre i $\mu_i$ sono stati scelti equispaziati nell'intervallo $[-1.5, 3.0]$.
-Il coefficiente di determinazione in funzione di questi parametri è riportato in figura \ref{fig:parametri_ex1}. Si osserva che per valori sufficentemente alti di $\alpha$ si ottine un buon fit. Per valori bassi di $\alpha$ e alti di $n$ invece si riscontrano problemi di overfitting.
-Questo comportamento è mostrato in figura \ref{fig:fits_ex1}.
+I dati sono stati ottenuti campionando $p(x)$ nell'intervallo $[-1.5, 3.0]$, ed è stato aggiunto un termine casuale per simulare del rumore.
+Sono stati generati in totale $100$ datapoints, di cui $60$ sono stati usati nel dataset di train e $40$ in quello di test.
 
-\begin{figure}[!htbp]
+Si sono compiute regressioni per vari valori di $\alpha$ e $n$, con lo scopo di valutare quali parametri risultassero ottimali, mentre i $\mu_i$ sono stati scelti equispaziati nell'intervallo $[-1.5, 3.0]$.
+Il coefficiente di determinazione in funzione di questi parametri è riportato in figura \ref{fig:parametri_ex1}.
+\begin{figure}[H]
     \centering
-    \includegraphics[width = 0.6\textwidth]{immagini/performance_ex1}
+    \includegraphics[width = 0.5\textwidth]{immagini/performance_ex1}
     \caption{\emph{sulle ascisse il numero di funzioni $\phi_i$, in ordinata il coefficiente di determinazione $R^2$.}}
     \label{fig:parametri_ex1}
 \end{figure}
 
-\begin{figure}[!htbp]
+Si osserva che per valori sufficientemente alti di $\alpha$ si ottiene un buon fit. Per valori bassi di $\alpha$ e alti di $n$ invece si riscontrano problemi di overfitting.
+Questo comportamento è mostrato in figura \ref{fig:fits_ex1}.
+
+
+\begin{figure}[H]
     \centering
     \begin{subfigure}{.49\textwidth}
         \centering
@@ -102,7 +109,7 @@ Questo comportamento è mostrato in figura \ref{fig:fits_ex1}.
         \centering
         \includegraphics[width=1 \textwidth]{immagini/fit_n18_a001.png}
      \end{subfigure}
-    \caption{\emph{Due fit dei dati generati, il grafico a sinistra mostra il fit coi parametri $\alpha = 100$ e $n = 10$, il grafico di destra coi parametri $n = 18$ e $a = 0.01$. Il primo di questi risulta essere un buon fit, mentre il secondo non predice correttamente i dati di test.}}
+    \caption{\emph{Due fit dei dati generati, il grafico a sinistra mostra il fit con parametri $\alpha = 100$ e $n = 10$, il grafico di destra con parametri $n = 18$ e $a = 0.01$. Il primo di questi risulta essere un buon fit, mentre il secondo non predice correttamente i dati di test.}}
     \label{fig:fits_ex1}
 \end{figure}
 
@@ -118,10 +125,8 @@ H = - \sum_{i=1}^L S_i S_{i+1}
 \]
 dove con $S_{L+1}$ si indica $S_0$ (si considera il sistema come periodico).
 
-%todo: spiegare meglio
 Con questa formula si sono generati i dati utilizzati nella regressione,
 mentre il modello utilizzato nella regressione associa a ciascun sistema la hamiltoniana:
-%todo: explained why - sign has been removed
 \[
 H =  \sum_{i=1}^{L}\sum_{j=1}^{L} J_{ij} S_i S_j
 \]
@@ -141,31 +146,29 @@ Si possono disporre i parametri $J_{ij}$ in una matrice $L \times L$:
 
 L'introduzione di questa matrice è volta soltanto a migliorare la presentazione dei dati ottenuti dalla regressione.
 Questi sono riportati in figura \ref{fig:parametri_es2}. Come si può osservare dalla figura, il metodo non regolarizzato fallisce
-nel trovare i coefficienti corretti, la matrice di Gram infatti risulta essere singolare. %todo: check, todo: add number of systems and length 
+nel trovare i coefficienti corretti, la matrice di Gram infatti risulta essere singolare.
 I metodi regolarizzati invece trovano dei coefficienti corretti per certi valori del parametro della regressione $\alpha$ (come quelli scelti per la realizzazione della figura \ref{fig:parametri_es2}).
-%todo: come mai non è simmetrico lasso?
-\begin{figure}[!htbp]
+
+La figura \ref{fig:performance_ex2} mostra l'evoluzione dei parametri e il coefficiente di determinazione $R^2$ al variare di $\alpha$.
+\begin{figure}[H]
     \centering
-    \begin{subfigure}{.39\textwidth}
+    \begin{subfigure}{.30\textwidth}
        \centering
        \includegraphics[width=1 \textwidth]{immagini/linear_params.png}
     \end{subfigure}
-    \begin{subfigure}{.39\textwidth}
+    \begin{subfigure}{.30\textwidth}
        \centering
        \includegraphics[width=1\textwidth]{immagini/ridge_params.png}
    \end{subfigure} 
-   \begin{subfigure}{.39\textwidth}
+   \begin{subfigure}{.30\textwidth}
     \centering
     \includegraphics[width=1\textwidth]{immagini/lasso_params.png}
     \end{subfigure} 
-   %todo: migliorare caption
-   \caption{\emph{Le tre immagini mostrano la matrice $\textbf{J}$ rappresentata sul piano $x$-$y$. Ogni cella indica un elemento della matrice, mentre il colore indica il valore numerico, che si ricava consultando la legenda a destra di ciascuna immagine. Il grafico in alto a sinistra mostra la $\textbf{J}$ ottenuta tramite il metodo dei minimi quadrati non regolarizzato, in alto a destra quella ottenuta dalla regolarizzazione $L2$, e in basso quella ottenuta dalla regolarizzazione $L1$.}}
+   \caption{\emph{Le tre immagini mostrano la matrice $\textbf{J}$ rappresentata sul piano $x$-$y$. Ogni cella indica un elemento della matrice, mentre il colore indica il valore numerico, che si ricava consultando la legenda a destra di ciascuna immagine. Il grafico a sinistra mostra la $\textbf{J}$ ottenuta tramite il metodo dei minimi quadrati non regolarizzato, il grafico centrale quella ottenuta dalla regolarizzazione $L2$, e il grafico a destra quella ottenuta dalla regolarizzazione $L1$.}}
    \label{fig:parametri_es2}
 \end{figure}
 
-La figura \ref{fig:performance_ex2} mostra l'evoluzione dei parametri al variare di $\alpha$, e la performance del training e test 
-
-\begin{figure}[!htbp]
+\begin{figure}[H]
     \centering
     \begin{subfigure}{.49\textwidth}
        \centering
@@ -178,9 +181,8 @@ La figura \ref{fig:performance_ex2} mostra l'evoluzione dei parametri al variare
    \caption{\emph{A sinistra il valore dei parametri in funzione di $\alpha$, a destra la performance($R^2$) in funzione di $\alpha$. La performance del dataset di test nel caso della regolarizzazione Lasso(L1) non è visibile in quanto coincide quasi con quella del training dataset.}}
    \label{fig:performance_ex2}
 \end{figure}
-%todo: come mai coincidono in lasso training e test?
-
-\subsection*{Risorse}
-Il codice utilizzato, insim
-
 \end{document}
+
+
+
+
