@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+
+% Language setting
+% Replace 'english' with e.g. 'spanish' to change the document language
+\usepackage[italian]{babel}
+\addto\captionsenglish{\renewcommand{\figurename}{Figura}}
+
+% Set page size and margins
+% Replace 'letterpaper' with 'a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+\begin{center}
+    {\Large Alma Mater Studiorum - Università di Bologna}
+    
+    \vspace{0.5cm}
+    {\bf \large Relazione per il corso di Data Science}
+\end{center} 
+
+\noindent
+{ Liam Cavini} \hfill {\bf 4° Foglio, Regressione Logistica e Modelli}\\
+{\ Semestre Invernale 2024/2025} \hfill 30/10/2024
+
+\subsection*{Risorse}
+Il codice utilizzato, insieme al file .tex di questo documento, possono essere trovati nella seguente repository github: \url{https://github.com/LazyLagrangian/data_science}.
+
+\subsection*{Esercizio 1 - Fasi del Modello di Ising con Regressione Logistica}
+L'esercizio ha lo scopo di allenare un regressore logistico su un dataset di modelli di Ising 2-D, classificati in ordinati e disordinati.
+
+I dati forniti, che risultano essere ordinati da sistemi con temperature più basse a quelli a temperature più alte (e quindi da più ordinati a più disordinati) sono stati divisi in tre batch.
+I primi $70000$ hanno formato il batch contenente i sistemi ordinati, i successivi $30000$ il batch dei sistemi critici (al limite tra ordinati e disordinati), e i dati rimanenti il batch dei sistemi disordinati.
+
+La divisione in batch non è da confondere con la classificazione dei sistemi:
+infatti, nonostante ciascun membro del batch ordinato è classificato come ordinato (e analagomente per il batch disordinato), 
+non vi è una classificazione a parte per i dati critici, che invece risultano essere o ordinati o disordinati.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{.30\textwidth}
+       \centering
+       \includegraphics[width=1 \textwidth]{immagini/ex_ord.png}
+    \end{subfigure}
+    \begin{subfigure}{.30\textwidth}
+       \centering
+       \includegraphics[width=1\textwidth]{immagini/ex_crit.png}
+   \end{subfigure} 
+   \begin{subfigure}{.30\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{immagini/ex_dis.png}
+    \end{subfigure} 
+   \caption{\emph{Le tre immagini mostrano sul piano x-y i valori dell}}
+   \label{fig:esempio_batch}
+\end{figure}
+
+\end{document}
