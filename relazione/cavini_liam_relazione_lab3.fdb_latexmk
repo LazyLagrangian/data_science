@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1730841723.01288 "/Users/liamcavini/data_science/lab3/relazione/cavini_liam_relazione_lab3.tex" "cavini_liam_relazione_lab3.pdf" "cavini_liam_relazione_lab3" 1730841730.46257 0
-  "/Users/liamcavini/data_science/lab3/relazione/cavini_liam_relazione_lab3.tex" 1730841715.28499 8455 be04f28c7d1749229696f86f865e1305 ""
+["pdflatex"] 1730842041.99229 "/Users/liamcavini/data_science/lab3/relazione/cavini_liam_relazione_lab3.tex" "cavini_liam_relazione_lab3.pdf" "cavini_liam_relazione_lab3" 1730842049.40335 0
+  "/Users/liamcavini/data_science/lab3/relazione/cavini_liam_relazione_lab3.tex" 1730842034.09089 8460 eabb3b7b595adbac336c256bbf03aac8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcbx1000.tfm" 1136768653 1536 30fde759286ded71559881bfa2623939 ""
@@ -108,9 +108,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1725615463.85324 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1725615366 8221445 41bcaa80a265371484fea946fa904d0e ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "cavini_liam_relazione_lab3.aux" 1730841730.38567 3343 6b63f7600e5f77df3a447ba542fab205 "pdflatex"
-  "cavini_liam_relazione_lab3.out" 1730841723.40576 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "cavini_liam_relazione_lab3.tex" 1730841715.28499 8455 be04f28c7d1749229696f86f865e1305 ""
+  "cavini_liam_relazione_lab3.aux" 1730842049.3276 3353 5f1715cfbbe401809b4d1c26b80f4b2b "pdflatex"
+  "cavini_liam_relazione_lab3.out" 1730842042.37298 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "cavini_liam_relazione_lab3.tex" 1730842034.09089 8460 eabb3b7b595adbac336c256bbf03aac8 ""
   "immagini/error_ex2.png" 1730822046.26711 330885 014ee1dca357f6a4061e2b243956fab0 ""
   "immagini/fit_n10_a100.png" 1730840059.82176 432604 abdf06f97c015876ee5e2753b3674e42 ""
   "immagini/fit_n18_a001.png" 1730840061.07012 469424 8aed9c4f2d73b2444020e15accea3fb5 ""
