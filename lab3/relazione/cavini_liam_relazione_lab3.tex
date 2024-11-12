@@ -1,0 +1,188 @@
+\documentclass{article}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+
+% Language setting
+% Replace 'english' with e.g. 'spanish' to change the document language
+\usepackage[italian]{babel}
+\addto\captionsenglish{\renewcommand{\figurename}{Figura}}
+
+% Set page size and margins
+% Replace 'letterpaper' with 'a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\begin{center}
+    {\Large Alma Mater Studiorum - Università di Bologna}
+    
+    \vspace{0.5cm}
+    {\bf \large Relazione per il corso di Data Science}
+\end{center} 
+
+\noindent
+{ Liam Cavini} \hfill {\bf 3° Foglio, Regressione Lineare e Modelli}\\
+{\ Semestre Invernale 2024/2025} \hfill 30/10/2024
+
+\subsection*{Risorse}
+Il codice utilizzato, insieme al file .tex di questo documento, possono essere trovati nella seguente repository github: \url{https://github.com/LazyLagrangian/data_science}.
+
+\subsection*{Esercizio 1 - Regressione con funzioni di base Gaussiane}
+L'esercizio ha lo scopo di compiere un fit di un polinomio tramite regressione lineare, utilizzando un modello della forma:
+\[
+f(x) = \theta_0 + \sum_{i=1}^n \theta_i \phi_i(x, \mu_i,\alpha)
+\]
+dove:
+\[
+\phi_i(x, \mu_i,\alpha) = \exp(-\frac{(x-\mu_i)^2}{\alpha})
+\]
+
+Le variabili $\theta_i$, con $i \in \{0, 1, \cdots\}$, sono i parametri da determinare tramite la regressione, mentre i valori di $\alpha$\footnote[1]{In questo esercizio, a ogni funzione $\phi_i$ è associato un parametro $\alpha_i$ distinto; tuttavia, si è scelto di fissare un valore comune per tutti i parametri $\alpha_i$, riducendoli a un unico $\alpha$.}, $\mu_i$ e $n$ devono essere definiti prima di eseguire il fit.
+
+Si è scelto come polinomio:
+\[ 
+p(x) = -0.1x^5-0.4x^4+1.2x^3+x^2-2.3x
+\]
+
+I dati sono stati ottenuti campionando $p(x)$ nell'intervallo $[-1.5, 3.0]$, ed è stato aggiunto un termine casuale per simulare del rumore.
+Sono stati generati in totale $100$ datapoints, di cui $60$ sono stati usati nel dataset di train e $40$ in quello di test.
+
+Si sono compiute regressioni per vari valori di $\alpha$ e $n$, con lo scopo di valutare quali parametri risultassero ottimali, mentre i $\mu_i$ sono stati scelti equispaziati nell'intervallo $[-1.5, 3.0]$.
+Il coefficiente di determinazione in funzione di questi parametri è riportato in figura \ref{fig:parametri_ex1}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{immagini/performance_ex1}
+    \caption{\emph{sulle ascisse il numero di funzioni $\phi_i$, in ordinata il coefficiente di determinazione $R^2$.}}
+    \label{fig:parametri_ex1}
+\end{figure}
+
+Si osserva che per valori sufficientemente alti di $\alpha$ si ottiene un buon fit. Per valori bassi di $\alpha$ e alti di $n$ invece si riscontrano problemi di overfitting.
+Questo comportamento è mostrato in figura \ref{fig:fits_ex1}.
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=1 \textwidth]{immagini/fit_n10_a100.png}
+     \end{subfigure}
+     \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=1 \textwidth]{immagini/fit_n18_a001.png}
+     \end{subfigure}
+    \caption{\emph{Due fit dei dati generati, il grafico a sinistra mostra il fit con parametri $\alpha = 100$ e $n = 10$, il grafico di destra con parametri $n = 18$ e $\alpha = 0.01$. Il primo di questi risulta essere un buon fit, mentre il secondo non predice correttamente i dati di test.}}
+    \label{fig:fits_ex1}
+\end{figure}
+
+\subsection*{Esercizio 2 - Regressione lineare e modello di Ising}
+L'esercizio consiste nell'applicare la regressione lineare per trovare i corretti coefficienti della hamiltoniana di un modello 1D di Ising con interazioni a primi vicini.
+La regressione lineare è stata implementata in tre modi distinti: tramite il metodo non regolarizzato dei minimi quadrati, tramite la regolarizzazione L1, e tramite la regolarizzazione L2.
+
+Un singolo sistema consiste di $L$ diversi elementi,
+e ciascuno di questi ha associato un valore $S_i$ che può essere $1$ o $-1$.
+La hamiltoniana del sistema è calcolata tramite la formula:
+\[
+H = - \sum_{i=1}^L S_i S_{i+1}
+\]
+dove con $S_{L+1}$ si indica $S_0$ (si considera il sistema come periodico).
+
+Con questa formula si sono generati i dati utilizzati nella regressione,
+mentre il modello utilizzato nella regressione associa a ciascun sistema la hamiltoniana:
+\[
+H =  \sum_{i=1}^{L}\sum_{j=1}^{L} J_{ij} S_i S_j
+\]
+Dove i $J_{ij}$ sono i parametri da determinare tramite la regressione.
+
+Ci aspettiamo dalla formula della hamiltoniana usata per generare i dati, che soltanto i termini della forma $S_i S_{i+1}$ e $S_{i+1} S_{i}$ abbiano coefficiente $J_{ij}$ ottenuto dalla regressione non nullo,
+e che $J_{i,i+1} + J_{i+1, i} = -1$.
+
+Si possono disporre i parametri $J_{ij}$ in una matrice $L \times L$:
+\[
+\textbf{J}  := \begin{bmatrix}
+    J_{1,1} & \cdots & J_{1,L} \\
+     \multicolumn{3}{c}{$\vdots$} \\
+    J_{L,1} & \cdots & J_{L,L} \\
+\end{bmatrix}
+\]
+
+L'introduzione di questa matrice è volta soltanto a migliorare la presentazione dei dati ottenuti dalla regressione.
+Questi sono riportati in figura \ref{fig:parametri_es2}. Come si può osservare dalla figura, il metodo non regolarizzato fallisce
+nel trovare i coefficienti corretti, la matrice di Gram infatti risulta essere singolare.
+I metodi regolarizzati invece trovano dei coefficienti corretti per certi valori del parametro della regressione $\alpha$ (come quelli scelti per la realizzazione della figura \ref{fig:parametri_es2}).
+
+La figura \ref{fig:performance_ex2} mostra l'evoluzione dei parametri e il coefficiente di determinazione $R^2$ al variare di $\alpha$.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{.30\textwidth}
+       \centering
+       \includegraphics[width=1 \textwidth]{immagini/linear_params.png}
+    \end{subfigure}
+    \begin{subfigure}{.30\textwidth}
+       \centering
+       \includegraphics[width=1\textwidth]{immagini/ridge_params.png}
+   \end{subfigure} 
+   \begin{subfigure}{.30\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{immagini/lasso_params.png}
+    \end{subfigure} 
+   \caption{\emph{Le tre immagini mostrano la matrice $\textbf{J}$ rappresentata sul piano $x$-$y$. Ogni cella indica un elemento della matrice, mentre il colore indica il valore numerico, che si ricava consultando la legenda a destra di ciascuna immagine. Il grafico a sinistra mostra la $\textbf{J}$ ottenuta tramite il metodo dei minimi quadrati non regolarizzato, il grafico centrale quella ottenuta dalla regolarizzazione $L2$, e il grafico a destra quella ottenuta dalla regolarizzazione $L1$.}}
+   \label{fig:parametri_es2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{.49\textwidth}
+       \centering
+       \includegraphics[width=1 \textwidth]{immagini/params_ex2.png}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+       \centering
+       \includegraphics[width=1\textwidth]{immagini/error_ex2.png}
+   \end{subfigure} 
+   \caption{\emph{A sinistra il valore dei parametri in funzione di $\alpha$, a destra la performance($R^2$) in funzione di $\alpha$. La performance del dataset di test nel caso della regolarizzazione Lasso(L1) non è visibile in quanto coincide quasi con quella del training dataset.}}
+   \label{fig:performance_ex2}
+\end{figure}
+\end{document}
+
+
+
+
