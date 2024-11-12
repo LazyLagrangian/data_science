@@ -60,37 +60,83 @@
 
 \noindent
 { Liam Cavini} \hfill {\bf 4° Foglio, Regressione Logistica e Modelli}\\
-{\ Semestre Invernale 2024/2025} \hfill 30/10/2024
+{\ Semestre Invernale 2024/2025} \hfill 12/11/2024
 
 \subsection*{Risorse}
 Il codice utilizzato, insieme al file .tex di questo documento, possono essere trovati nella seguente repository github: \url{https://github.com/LazyLagrangian/data_science}.
 
 \subsection*{Esercizio 1 - Fasi del Modello di Ising con Regressione Logistica}
-L'esercizio ha lo scopo di allenare un regressore logistico su un dataset di modelli di Ising 2-D, classificati in ordinati e disordinati.
+L'obiettivo dell'esercizio è quello di allenare un regressore logistico su un dataset di modelli di Ising 2-D, classificati in ordinati e disordinati.
 
-I dati forniti, che risultano essere ordinati da sistemi con temperature più basse a quelli a temperature più alte (e quindi da più ordinati a più disordinati) sono stati divisi in tre batch.
-I primi $70000$ hanno formato il batch contenente i sistemi ordinati, i successivi $30000$ il batch dei sistemi critici (al limite tra ordinati e disordinati), e i dati rimanenti il batch dei sistemi disordinati.
+I dati forniti consistono in 160000 sistemi composti da $40\times40$ valori, disposti dalle temperature più basse alle temperature più alte (e quindi da più ordinati a più disordinati). Questi sono stati divisi in tre batch:
+i primi $70000$ hanno formato il batch contenente i sistemi ordinati, i successivi $30000$ il batch dei sistemi critici (al limite tra ordinati e disordinati), e i dati rimanenti il batch dei sistemi disordinati.
 
 La divisione in batch non è da confondere con la classificazione dei sistemi:
-infatti, nonostante ciascun membro del batch ordinato è classificato come ordinato (e analagomente per il batch disordinato), 
-non vi è una classificazione a parte per i dati critici, che invece risultano essere o ordinati o disordinati.
+infatti, nonostante ciascun membro del batch ordinato sia classificato come ordinato (e analogamente per il batch disordinato), 
+non vi è una classificazione a parte per i dati critici, che invece risultano essere ordinati o disordinati.
+
+La figura \ref{fig:esempio_batch} mostra sistemi tipici appartenenti a ciascun batch,
+la figura \ref{fig:istogrammi} fornisce una panoramica generale del livello di ordine relativo a ciascuno di essi.
+
+
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{.30\textwidth}
+    \begin{subfigure}{.29\textwidth}
        \centering
        \includegraphics[width=1 \textwidth]{immagini/ex_ord.png}
     \end{subfigure}
-    \begin{subfigure}{.30\textwidth}
+    \begin{subfigure}{.29\textwidth}
        \centering
        \includegraphics[width=1\textwidth]{immagini/ex_crit.png}
    \end{subfigure} 
-   \begin{subfigure}{.30\textwidth}
+   \begin{subfigure}{.29\textwidth}
     \centering
     \includegraphics[width=1\textwidth]{immagini/ex_dis.png}
     \end{subfigure} 
-   \caption{\emph{Le tre immagini mostrano sul piano x-y i valori dell}}
+   \caption{\emph{Tre esempi rappresentativi dei batch, ordinato, critico e disordinato. Ogni cella del piano x-y rappresenta uno dei $40\times40$ valori che caratterizzano un sistema.}}
    \label{fig:esempio_batch}
 \end{figure}
 
+
+Per il training sono stati utilizzati solamente i dati appartenenti al batch ordinato e disordinato, che sono stati ulteriormente suddivisi in batch di training e testing.
+
+Si è poi allenato il regressore logistico, utilizzando tre metodi regolarizzati (secondo regolarizzazione $L_2$) proposti dalla libreria sklearn: lbfgs, liblinear e newton-cg. La performance $R^2$ dei vari metodi in funzione del parametro di regolarizzazione, è presentata in figura \ref{fig:performance}.
+\begin{figure}[H]
+   \centering
+   \begin{subfigure}{.35\textwidth}
+      \centering
+      \includegraphics[width=1 \textwidth]{immagini/istogramma_ordinato.png}
+   \end{subfigure}
+   \begin{subfigure}{.35\textwidth}
+      \centering
+      \includegraphics[width=1\textwidth]{immagini/istogramma_critico.png}
+  \end{subfigure} 
+  \begin{subfigure}{.35\textwidth}
+   \centering
+   \includegraphics[width=1\textwidth]{immagini/istogramma_disordinato.png}
+   \end{subfigure} 
+  \caption{\emph{Per ciascun batch, la figura mostra un istogramma della somma dei valori che compongono i sistemi. Tale somma ci fornisce una misura del livello di ordine di un sistema.}}
+  \label{fig:istogrammi}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{.35\textwidth}
+       \centering
+       \includegraphics[width=1 \textwidth]{immagini/lbfgs.png}
+    \end{subfigure}
+    \begin{subfigure}{.35\textwidth}
+       \centering
+       \includegraphics[width=1\textwidth]{immagini/liblinear.png}
+   \end{subfigure} 
+   \begin{subfigure}{.35\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{immagini/newton-cg.png}
+    \end{subfigure} 
+   \caption{\emph{Sull'asse delle x il parametro di regolarizzazione $\lambda$, sull'asse delle y il coefficiente di determinazione $R^2$, valutato sia sul batch di test degli ordinati e disordinati, che sul batch dei critici. I tre grafici sono relativi ciascuno ad uno dei metodi di regressione.}}
+   \label{fig:performance}
+\end{figure}
 \end{document}
+%todo: perché danno tutti la stessa performance?
+%todo: s
