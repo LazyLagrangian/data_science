@@ -1,4 +1,14 @@
 .DS_Store
 .DS_Store?
-lab1
-lab2
+lab1/risorse/**
+lab1/.vscode/**
+lab1/relazione/images/**
+lab2/risorse/**
+lab2/.vscode/**
+lab2/relazione/immagini/**
+lab3/risorse/**
+lab3/.vscode/**
+lab3/relazione/immagini/**
+lab4/risorse/**
+lab4/.vscode/**
+lab4/relazione/immagini/**
