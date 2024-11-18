@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+
+% Language setting
+% Replace 'english' with e.g. 'spanish' to change the document language
+\usepackage[italian]{babel}
+\addto\captionsenglish{\renewcommand{\figurename}{Figura}}
+
+% Set page size and margins
+% Replace 'letterpaper' with 'a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+\begin{center}
+    {\Large Alma Mater Studiorum - Università di Bologna}
+    
+    \vspace{0.5cm}
+    {\bf \large Relazione per il corso di Data Science}
+\end{center} 
+
+\noindent
+{ Liam Cavini} \hfill {\bf 5° Foglio, Softmax e PCA}\\
+{\ Semestre Invernale 2024/2025} \hfill 19/11/2024
+
+\subsection*{Risorse}
+Il codice utilizzato, insieme al file .tex di questo documento, possono essere trovati nella seguente repository github: \url{https://github.com/LazyLagrangian/data_science}.
+
+\subsection*{Esercizio 1 - Funzione Esponenziale Normalizzata (Softmax) e banca dati MNIST}
+L'esercizio consiste nell'allenare un regressore lineare sul dataset MNIST, che consiste in cifre numeriche, da 0 a 9, scritte a mano su griglie di pixel $28 \times 28$.
+Il nostro classificatore, se il training ha successo, deve quindi riuscire a riconoscere con un accuratezza sufficiente le 10 cifre numeriche.
+
+Come è solito si è diviso il dataset in training e test, affidando alla libreria sklearn il compito di randomizzare i due batch. Sempre usando sklearn, ed in particolare il metodo di regressione logistica `sag', si è addestrato il modello.
+La sparsità (la percentuale dei pesi non nulli) è mostrata in tabella \ref{tab:sparsità}.
+
+\begin{table}[htb]
+    \centering
+\begin{tabular}[]{|c|c|}
+    \hline
+    cifra & sparsità\\ \hline
+    0 & 0.3648 \\ \hline
+    1 & 0.2997 \\ \hline
+    2 & 0.4349 \\ \hline
+    3 & 0.3980 \\ \hline
+    4 & 0.2755 \\ \hline
+    5 & 0.3520 \\ \hline
+    6 & 0.3827 \\ \hline
+    7 & 0.3673 \\ \hline
+    8 & 0.3546 \\ \hline
+    9 & 0.2857 \\ \hline
+\end{tabular}
+\caption{\emph{La tabella mostra nella seconda colonna le sparsità arrotondate alla quarta cifra significativa, nella prima la cifra a cui sono associati i pesi.}}
+\label{tab:sparsità}
+\end{table}
+
+I pesi relativi a ciascuna cifra sono stati visualizzati su una matrice $28 \times 28$ in figura \ref{fig:pesi}.
+Si osserva che in alcuni casi i pesi più rilevanti tracciano in maniera distinguibile la cifra corrispondente.
+
+\begin{figure}[hbtp]
+    \centering
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs0.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs1.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs2.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs3.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs4.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs5.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs6.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs7.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs8.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.29\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/coefs9.png}
+    \end{subfigure}
+    \caption{\emph{La figura mostra i pesi di ciascuna classe, da 0 a 9 (partendo da in alto a sinistra), su una griglia $28 \times 28$. I valori numerici corrispondenti ai colori sono consultabili dalla legenda a fianco dell'ultima immagine.}}
+    \label{fig:pesi}
+\end{figure}
+
+\subsection*{Esercizio 2 - Modello di Ising e analisi delle componenti principali}
+L'esericizo consiste nel compiere l'analisi dei componenti pricipali al modello di Ising bidimensionale discusso nel laboratorio precendente.
+Prima di discutere i risultati dell'analisi, consideriamo i risulati attesi in linea teorica.
+
+Possiamo immaginare ogni sistema come un punto in uno spazio di dimensione $n = 1600$.
+Ogni coordinata può prendere il valore $1$ o $-1$, dunque i punti saranno disposti sui vertici di un ipercubo $[-1,1]^n$.
+I sistemi con temperatura bassa hanno tutti i valori uguali: di conseguenza si devono trovare sul vertice $(1,\cdots, 1)$ oppure $(-1,\cdots, -1)$.
+Osserviamo che la retta passante per questi due vertici comprende anche l'origine, ed è quindi un asse, che denotiamo $\hat{n}$.
+Dato che buona parte dei sistemi si trovano su questi due vertici, è ragionevole supporre che una notevole parte della varianza sia disposta lungo questo asse.
+
+Ad alte temperature ciascuno dei $1600$ valori è $-1$ oppure $1$ con uguale probabilità.
+I vertici su cui si collocano i punti corrispondenti a questi sistemi sono quindi molteplici, e nessun singolo asse li comprende tutti.
+ 
+
+Possiamo quindi fare le seguenti predizioni:
+\begin{itemize}
+    \item $\hat{n}$ è un asse principale
+    \item la varianza lungo $\hat{n}$ è superiore a quella lungo gli altri assi.
+    \item I sistemi a basse temperature sono disposti lungo le estremità di questo asse,
+    mentre quelli ad alte temperature vicino all'origine.
+\end{itemize}
+
+I risultati delle analisi confermano queste predizioni. Infatti $\hat{n}$ risulta essere il primo asse principale, ed è responsabile per circa il $50\%$ della varianza, mentre il secondo asse principale è responsabile per circa il $ 0.6\%$.
+La terza predizione trova conferma in figura \ref{fig:scatter}.
+
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{immagini/scatter.png}
+    \caption{\emph{La figura mostra la distribuzione dei sistemi lungo i primi due assi principali (con l'asse $x$ come primo), e le rispettive temperature. I valori numerici corrispondenti ai colori sono consultabili dalla legenda a fianco.}}
+    \label{fig:scatter}
+\end{figure}
+
+\end{document}
