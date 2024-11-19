@@ -66,13 +66,11 @@
 Il codice utilizzato, insieme al file .tex di questo documento, possono essere trovati nella seguente repository github: \url{https://github.com/LazyLagrangian/data_science}.
 
 \subsection*{Esercizio 1 - Funzione Esponenziale Normalizzata (Softmax) e banca dati MNIST}
-L'esercizio consiste nell'allenare un regressore lineare sul dataset MNIST, che consiste in cifre numeriche, da 0 a 9, scritte a mano su griglie di pixel $28 \times 28$.
-Il nostro classificatore, se il training ha successo, deve quindi riuscire a riconoscere con un accuratezza sufficiente le 10 cifre numeriche.
+L'esercizio consiste nell'allenare un regressore logistico sul dataset MNIST, composto da cifre numeriche, da 0 a 9, scritte a mano su griglie di pixel $28 \times 28$.
 
-Come è solito si è diviso il dataset in training e test, affidando alla libreria sklearn il compito di randomizzare i due batch. Sempre usando sklearn, ed in particolare il metodo di regressione logistica `sag', si è addestrato il modello.
-La sparsità (la percentuale dei pesi non nulli) è mostrata in tabella \ref{tab:sparsità}.
+Come nei laboratori precedenti, si è diviso il dataset in training e test, affidando alla libreria scikit-learn(sklearn) il compito di randomizzare i due batch. Sempre usando sklearn, ed in particolare il metodo di regressione logistica `sag', si è addestrato il modello e calcolata la sparsità \footnote{la percentuale dei pesi non nulli} che è mostrata in tabella \ref{tab:sparsità}.
 
-\begin{table}[htb]
+\begin{table}[h]
     \centering
 \begin{tabular}[]{|c|c|}
     \hline
@@ -92,48 +90,58 @@ La sparsità (la percentuale dei pesi non nulli) è mostrata in tabella \ref{tab
 \label{tab:sparsità}
 \end{table}
 
+Il coefficiente di determinazione in funzione dell'inverso del parametro di regolarizzazione è mostrato in figura \ref{fig:performance}.
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.5\textwidth]{immagini/performance.png}
+    \caption{\emph{Il grafico mostra sull'asse delle ascisse l'inverso del parametro di regolarizzazione, sull'asse delle ordinate il coefficiente di determinazione $R^2$ relativo al batch di test e, separatamente, a quello di train.}}
+    \label{fig:performance}
+\end{figure}
+
 I pesi relativi a ciascuna cifra sono stati visualizzati su una matrice $28 \times 28$ in figura \ref{fig:pesi}.
 Si osserva che in alcuni casi i pesi più rilevanti tracciano in maniera distinguibile la cifra corrispondente.
 
-\begin{figure}[hbtp]
+\begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs0.png}
     \end{subfigure}
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs1.png}
     \end{subfigure}
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs2.png}
     \end{subfigure}
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs3.png}
     \end{subfigure}
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs4.png}
     \end{subfigure}
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs5.png}
     \end{subfigure}
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs6.png}
     \end{subfigure}
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs7.png}
     \end{subfigure}
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs8.png}
     \end{subfigure}
-    \begin{subfigure}[b]{0.29\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{immagini/coefs9.png}
     \end{subfigure}
@@ -142,14 +150,15 @@ Si osserva che in alcuni casi i pesi più rilevanti tracciano in maniera disting
 \end{figure}
 
 \subsection*{Esercizio 2 - Modello di Ising e analisi delle componenti principali}
-L'esericizo consiste nel compiere l'analisi dei componenti pricipali al modello di Ising bidimensionale discusso nel laboratorio precendente.
-Prima di discutere i risultati dell'analisi, consideriamo i risulati attesi in linea teorica.
+L'esercizio consiste nel compiere l'analisi dei componenti principali del modello di Ising bidimensionale discusso nel laboratorio precedente.
+Prima di discutere i risultati dell'analisi, consideriamo i risultati attesi in linea teorica.
 
-Possiamo immaginare ogni sistema come un punto in uno spazio di dimensione $n = 1600$.
-Ogni coordinata può prendere il valore $1$ o $-1$, dunque i punti saranno disposti sui vertici di un ipercubo $[-1,1]^n$.
+Ogni sistema può essere rappresentato come un punto in uno spazio di dimensione $n = 1600$.
+Ogni coordinata può prendere il valore $1$ o $-1$, dunque i punti saranno disposti sui vertici dell'ipercubo $[-1,1]^n$.
+
 I sistemi con temperatura bassa hanno tutti i valori uguali: di conseguenza si devono trovare sul vertice $(1,\cdots, 1)$ oppure $(-1,\cdots, -1)$.
 Osserviamo che la retta passante per questi due vertici comprende anche l'origine, ed è quindi un asse, che denotiamo $\hat{n}$.
-Dato che buona parte dei sistemi si trovano su questi due vertici, è ragionevole supporre che una notevole parte della varianza sia disposta lungo questo asse.
+Dato che buona parte dei sistemi si trovano su questi due vertici, è ragionevole supporre che una notevole percentuale della varianza sia disposta lungo questo asse.
 
 Ad alte temperature ciascuno dei $1600$ valori è $-1$ oppure $1$ con uguale probabilità.
 I vertici su cui si collocano i punti corrispondenti a questi sistemi sono quindi molteplici, e nessun singolo asse li comprende tutti.
@@ -169,8 +178,8 @@ La terza predizione trova conferma in figura \ref{fig:scatter}.
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=\textwidth]{immagini/scatter.png}
-    \caption{\emph{La figura mostra la distribuzione dei sistemi lungo i primi due assi principali (con l'asse $x$ come primo), e le rispettive temperature. I valori numerici corrispondenti ai colori sono consultabili dalla legenda a fianco.}}
+    \includegraphics[width=0.8\textwidth]{immagini/scatter.png}
+    \caption{\emph{La figura mostra la distribuzione dei sistemi lungo i primi due assi principali (con l'asse $x$ come primo), e le rispettive temperature. I valori numerici corrispondenti ai colori sono consultabili dalla legenda a fianco. Il valore di $T$ è relativo ad una arbitraria scala di energia di interazione.}}
     \label{fig:scatter}
 \end{figure}
 

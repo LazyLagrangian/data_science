@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.6)  18 NOV 2024 12:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.6)  19 NOV 2024 15:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -424,64 +424,69 @@ Package hyperref Info: Link coloring ON on input line 53.
 \openout3 = `cavini_liam_relazione_lab5.out'.
 
 \c@lstlisting=\count315
-<immagini/coefs0.png, id=7, 462.528pt x 346.896pt>
+<immagini/performance.png, id=8, 462.528pt x 346.896pt>
+File: immagini/performance.png Graphic file (type png)
+<use immagini/performance.png>
+Package pdftex.def Info: immagini/performance.png  used on input line 98.
+(pdftex.def)             Requested size: 250.24199pt x 187.68098pt.
+<immagini/coefs0.png, id=11, 462.528pt x 346.896pt>
 File: immagini/coefs0.png Graphic file (type png)
 <use immagini/coefs0.png>
-Package pdftex.def Info: immagini/coefs0.png  used on input line 102.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
-<immagini/coefs1.png, id=9, 462.528pt x 346.896pt>
+Package pdftex.def Info: immagini/coefs0.png  used on input line 110.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
+<immagini/coefs1.png, id=12, 462.528pt x 346.896pt>
 File: immagini/coefs1.png Graphic file (type png)
 <use immagini/coefs1.png>
-Package pdftex.def Info: immagini/coefs1.png  used on input line 106.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
-<immagini/coefs2.png, id=10, 462.528pt x 346.896pt>
+Package pdftex.def Info: immagini/coefs1.png  used on input line 114.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
+<immagini/coefs2.png, id=13, 462.528pt x 346.896pt>
 File: immagini/coefs2.png Graphic file (type png)
 <use immagini/coefs2.png>
-Package pdftex.def Info: immagini/coefs2.png  used on input line 110.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
-<immagini/coefs3.png, id=11, 462.528pt x 346.896pt>
+Package pdftex.def Info: immagini/coefs2.png  used on input line 118.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
+<immagini/coefs3.png, id=14, 462.528pt x 346.896pt>
 File: immagini/coefs3.png Graphic file (type png)
 <use immagini/coefs3.png>
-Package pdftex.def Info: immagini/coefs3.png  used on input line 114.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
-<immagini/coefs4.png, id=12, 462.528pt x 346.896pt>
+Package pdftex.def Info: immagini/coefs3.png  used on input line 122.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
+<immagini/coefs4.png, id=15, 462.528pt x 346.896pt>
 File: immagini/coefs4.png Graphic file (type png)
 <use immagini/coefs4.png>
-Package pdftex.def Info: immagini/coefs4.png  used on input line 118.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
-<immagini/coefs5.png, id=13, 462.528pt x 346.896pt>
+Package pdftex.def Info: immagini/coefs4.png  used on input line 126.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
+<immagini/coefs5.png, id=16, 462.528pt x 346.896pt>
 File: immagini/coefs5.png Graphic file (type png)
 <use immagini/coefs5.png>
-Package pdftex.def Info: immagini/coefs5.png  used on input line 122.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
-<immagini/coefs6.png, id=14, 462.528pt x 346.896pt>
+Package pdftex.def Info: immagini/coefs5.png  used on input line 130.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
+<immagini/coefs6.png, id=17, 462.528pt x 346.896pt>
 File: immagini/coefs6.png Graphic file (type png)
 <use immagini/coefs6.png>
-Package pdftex.def Info: immagini/coefs6.png  used on input line 126.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
-<immagini/coefs7.png, id=15, 462.528pt x 346.896pt>
+Package pdftex.def Info: immagini/coefs6.png  used on input line 134.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
+<immagini/coefs7.png, id=18, 462.528pt x 346.896pt>
 File: immagini/coefs7.png Graphic file (type png)
 <use immagini/coefs7.png>
-Package pdftex.def Info: immagini/coefs7.png  used on input line 130.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
-<immagini/coefs8.png, id=16, 462.528pt x 346.896pt>
+Package pdftex.def Info: immagini/coefs7.png  used on input line 138.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
+<immagini/coefs8.png, id=19, 462.528pt x 346.896pt>
 File: immagini/coefs8.png Graphic file (type png)
 <use immagini/coefs8.png>
-Package pdftex.def Info: immagini/coefs8.png  used on input line 134.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
-<immagini/coefs9.png, id=17, 462.528pt x 346.896pt>
+Package pdftex.def Info: immagini/coefs8.png  used on input line 142.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
+<immagini/coefs9.png, id=20, 462.528pt x 346.896pt>
 File: immagini/coefs9.png Graphic file (type png)
 <use immagini/coefs9.png>
-Package pdftex.def Info: immagini/coefs9.png  used on input line 138.
-(pdftex.def)             Requested size: 145.137pt x 108.85464pt.
+Package pdftex.def Info: immagini/coefs9.png  used on input line 146.
+(pdftex.def)             Requested size: 125.12099pt x 93.83784pt.
  [1
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2 <./immagini/coefs0.png> <./immagini/coefs1.png> <./immagini/coefs2.png> <./immagini/coefs3.png> <./immagini/coefs4.png> <./immagini/coefs5.png> <./immagini/coefs6.png> <./immagini/coefs7.png> <./immagini/coefs8.png> <./immagini/coefs9.png>]
-<immagini/scatter.png, id=54, 499.31343pt x 320.44518pt>
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2 <./immagini/performance.png> <./immagini/coefs0.png> <./immagini/coefs1.png> <./immagini/coefs2.png> <./immagini/coefs3.png> <./immagini/coefs4.png> <./immagini/coefs5.png> <./immagini/coefs6.png> <./immagini/coefs7.png> <./immagini/coefs8.png> <./immagini/coefs9.png>]
+<immagini/scatter.png, id=60, 499.31343pt x 320.44518pt>
 File: immagini/scatter.png Graphic file (type png)
 <use immagini/scatter.png>
-Package pdftex.def Info: immagini/scatter.png  used on input line 172.
-(pdftex.def)             Requested size: 500.484pt x 321.21204pt.
+Package pdftex.def Info: immagini/scatter.png  used on input line 181.
+(pdftex.def)             Requested size: 400.38872pt x 256.97256pt.
  [3 <./immagini/scatter.png>] (./cavini_liam_relazione_lab5.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -491,18 +496,18 @@ Package rerunfilecheck Info: File `cavini_liam_relazione_lab5.out' has not chang
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14079 strings out of 474116
- 225267 string characters out of 5743683
- 1947187 words of memory out of 5000000
- 36286 multiletter control sequences out of 15000+600000
- 560923 words of font info for 46 fonts, out of 8000000 for 9000
+ 14105 strings out of 474116
+ 225680 string characters out of 5743683
+ 1942187 words of memory out of 5000000
+ 36303 multiletter control sequences out of 15000+600000
+ 563196 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,9n,79p,585b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on cavini_liam_relazione_lab5.pdf (3 pages, 884769 bytes).
+ 69i,9n,79p,585b,458s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on cavini_liam_relazione_lab5.pdf (3 pages, 1061435 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 133 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
+ 12 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
