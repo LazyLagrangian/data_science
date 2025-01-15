@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{booktabs}
+%\usepackage[annataritalic]{tengwarscript}
+
+% Language setting
+% Replace 'english' with e.g. 'spanish' to change the document language
+\usepackage[italian]{babel}
+\addto\captionsenglish{\renewcommand{\figurename}{Figura}}
+
+% Set page size and margins
+% Replace 'letterpaper' with 'a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=right,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle, language= C++}
+
+\begin{document}
+\begin{center}
+    {\Large Alma Mater Studiorum - Università di Bologna}
+    
+    \vspace{0.5cm}
+    {\bf \large Relazione per il corso di Data Science}
+\end{center} 
+
+\noindent
+{Liam Cavini} \hfill {\bf 7° Foglio, Reti Neurali}\\
+{\ Semestre Invernale 2024/2025} \hfill 15/01/2025
+
+\subsection*{Risorse}
+Il codice utilizzato, insieme al file .tex di questo documento, possono essere trovati nella seguente repository github: \url{https://github.com/LazyLagrangian/data_science}.
+
+\subsection*{Esercizio 1 - Somme di numeri con le reti neurali }
+L'esercizio consiste nell'allenare una rete neurale capace di sommare due numeri interi compresi tra 0 e 999.
+I dataset di training e testing, composti da una coppia di numeri (gli addendi), sono stati generati casualmente.
+Complessivamente i due dataset contengono 10000 coppie, 2000 per il testing e 8000 per il training.
+
+La rete neurale allenata è costituita da due layer nascosti densi formati da 64 neuroni, con attivazione ReLU, e un layer di output denso composto da un singolo neurone.
+
+La rete è stata allenata per 100 epoche, ottenendo un'accuratezza maggiore del $ 99\%$ sul dataset di training, con tolleranza 0.5.
+Dunque più del $99\%$ degli output nel testing hanno come intero più vicino il risultato della somma.
+
+L'evoluzione del loss durante il training è mostrato in figura \ref{fig:loss_evolution}.
+
+La tabella \ref{tab:esempi} mostra alcuni esempi di input e i corrispondenti output forniti dalla rete neurale.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/training_loss.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/training_loss_zoomed.png}
+    \end{subfigure}
+
+    \caption{\emph{L'immagine a sinistra mostra il training loss in funzione dell'epoch. L'immagine a destra è una versione `zoomed' del grafico del loss che parte alla 20-esima epoch.}}
+    \label{fig:loss_evolution}
+\end{figure}
+
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lll}
+    \toprule
+     \textbf{Input}&\textbf{Output ideale}&\textbf{Output effettivo} \\
+     \midrule
+     $(5,7)$ & 12 & 11.99 \\
+     $(100,200)$ & 300 & 299.98 \\
+     $(400,200)$ & 600 & 599.92 \\
+     $(999,999)$ & 1998 & 1997.74 \\
+     \bottomrule
+    \end{tabular}
+    \caption{\textit{Esempi di somme compiute dalla rete neurale. Nella prima colonna gli addendi, nella seconda la somma, e nella terza l'output della rete neurale.}}
+    \label{tab:esempi}
+\end{table}
+
+
+
+\subsection*{Esercizio 2 - Segno di una somma di numeri con le reti neurali }
+L'esercizio consiste nel modificare la rete neurale di regressione dell'esercizio precedente in una di classificazione.
+La rete prende in input una coppia di numeri, e la classifica in base al segno della loro somma, che può essere negativo, positivo o nullo.
+
+Sono quindi stati modificati i label, rendendoli idonei alla classificazione.
+Per fare ciò potrebbe sembrare che sia sufficiente scambiare \footnote{Qua seguo la convenzione della consegna, le variabili nel codice effettivo hanno nomi diversi.}:
+
+\begin{lstlisting}[language = Python]
+    labels = inputdata[:,0] + inputdata[:,1]
+\end{lstlisting}
+
+con 
+
+\begin{lstlisting}[language = Python]
+    labels = np.sign(inputdata[:,0] + inputdata[:,1])
+\end{lstlisting}
+
+Ma il modo corretto di modificare i labels è invece di usare un one-hot encoding. Nel codice si è usato $[1,0,0]$ per la classe dei valori negativi, $[0,1,0]$ per la classe dei valori nulli, $[0,0,1]$ per la classe dei valori positivi.
+
+La rete è stata prima allenata sullo stesso dataset dell'esercizio 1, ottenendo una accuratezza del 100\%, attesa dato che il dataset è composto da solo numeri positivi \footnote{Si potrebbero anche ottenere valori nulli nel dataset, ma la probabilità è di $\sim 1\%$.}.
+
+Successivamente è stato modificato il dataset in modo da essere composto da coppie di interi compresi tra $-999$ e $999$. Si è ottenuta una accuratezza maggiore del $99\%$. 
+
+L'evoluzione del training loss per entrambi i casi è mostrata in figura \ref{fig:loss_evolution_2}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/training_loss2.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{immagini/training_loss2_mod.png}
+    \end{subfigure}
+
+    \caption{\emph{L'immagine a sinistra mostra il training loss in funzione dell'epoch per il training svolto sul dataset dell'esercizio precedente, quella a destra per il dataset modificato.}}
+    \label{fig:loss_evolution_2}
+\end{figure}
+
+\end{document}

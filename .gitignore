@@ -21,4 +21,9 @@ lab6/relazione/immagini/**
 lab6/landau_face.png
 lab6/test
 lab6/liam_face.png
-
+lab7/risorse/**
+lab7/.vscode/**
+lab7/relazione/immagini/**
+lab7/esercizio1_scaled.ipynb
+lab7/lotteria_gioco.py
+lab7/valore_atteso_lotteria.ipynb
